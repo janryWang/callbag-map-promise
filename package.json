@@ -1,0 +1,34 @@
+{
+  "name": "callbag-map-promise",
+  "version": "0.1.0",
+  "description": "callbag map+fromPromise+flatten",
+  "main": "./lib",
+  "scripts": {
+    "test": "babel-node test.js --presets @babel/preset-env --plugins @babel/plugin-proposal-pipeline-operator",
+    "build": "babel index.js --out-dir lib  --presets @babel/preset-env --plugins @babel/plugin-proposal-pipeline-operator"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janryWang/callbag-map-promise.git"
+  },
+  "author": "janryWang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/janryWang/callbag-map-promise/issues"
+  },
+  "homepage": "https://github.com/janryWang/callbag-map-promise#readme",
+  "dependencies": {
+    "callbag-basics": "^3.0.0",
+    "callbag-flatten": "^1.1.0",
+    "callbag-from-promise": "^1.0.0",
+    "callbag-map": "^1.0.1",
+    "callbag-pipe": "^1.1.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.42",
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/node": "^7.0.0-beta.42",
+    "@babel/plugin-proposal-pipeline-operator": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42"
+  }
+}
