@@ -1,90 +1,39 @@
-import { createStore, applyMiddleware } from "redux"
-import { pipe, filter, forEach, map } from "callbag-basics"
-import createCallbagMiddleware from "./index"
+import test from "ava"
+import { fromPromise, pipe, forEach } from "callbag-basics"
+import mapPromise from "./lib"
 
-function todos(state = [], action) {
-    switch (action.type) {
-        case "ADD_TODO":
-            return state.concat([action.payload])
-        case "REMOVE_TODO":
-            return []
-        case "ADD_SOMETHING":
-            return state.concat([action.payload])
-        default:
-            return state
-    }
+const fetchUser = name => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve({
+                name
+            })
+        }, 1000)
+    })
 }
 
-function addTodo(payload) {
-    return {
-        type: "ADD_TODO",
-        payload
-    }
+const fetchFriends = user => {
+    return new Promise((resolve, reject) => {
+        if (user.name === "janry") {
+            resolve(["aaa", "bbb"])
+        } else {
+            resolve(["aaa"])
+        }
+    })
 }
 
-function addSomething(payload) {
-    return {
-        type: "ADD_SOMETHING",
-        payload
-    }
-}
-
-function removeTodo() {
-    return {
-        type: "REMOVE_TODO"
-    }
-}
-
-const typeOf = _type => {
-    return ({ type }) => {
-        return type === _type
-    }
-}
-
-const store = createStore(
-    todos,
-    ["Hello world"],
-    applyMiddleware(
-        createCallbagMiddleware((actions, store) => {
-            actions
-                |> filter(typeOf("ADD_SOMETHING"))
-                |> forEach(({ payload }) => {
-                    console.log("log:" + payload)
-                })
-
-            actions
-                |> filter(typeOf("ADD_TODO"))
-                |> forEach(({ payload }) => {
-                    setTimeout(() => {
-                        store.dispatch(addSomething(payload + "  23333333"))
-                    })
-                })
-
-            // pipe(
-            //     actions,
-            //     filter(typeOf('ADD_SOMETHING')),
-            //     forEach(({payload})=>{
-            //         console.log('log:'+payload)
-            //     })
-            // )
-
-            // pipe(
-            //     actions,
-            //     filter(typeOf('ADD_TODO')),
-            //     forEach(({payload})=>{
-            //         setTimeout(()=>{
-            //             store.dispatch(addSomething(payload+'  23333333'))
-            //         })
-
-            //     })
-            // )
+test.cb("normal", t => {
+    fromPromise(fetchUser("janry"))
+        |> mapPromise(user => fetchFriends(user))
+        |> forEach(friends => {
+            t.deepEqual(friends, ["aaa", "bbb"])
+            t.end()
         })
-    )
-)
 
-store.dispatch(addTodo("Hello redux"))
-store.dispatch(addSomething("This will not add numbers"))
-
-store.subscribe(() => {
-    console.log(store.getState())
+    fromPromise(fetchUser("judicy"))
+        |> mapPromise(user => fetchFriends(user))
+        |> forEach(friends => {
+            t.deepEqual(friends, ["aaa"])
+            t.end()
+        })
 })

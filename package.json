@@ -4,7 +4,7 @@
   "description": "callbag map+fromPromise+flatten",
   "main": "./lib",
   "scripts": {
-    "test": "babel-node test.js --presets @babel/preset-env --plugins @babel/plugin-proposal-pipeline-operator",
+    "test": "ava",
     "build": "babel index.js --out-dir lib  --presets @babel/preset-env --plugins @babel/plugin-proposal-pipeline-operator"
   },
   "repository": {
@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/janryWang/callbag-map-promise#readme",
   "dependencies": {
-    "callbag-basics": "^3.0.0",
     "callbag-flatten": "^1.1.0",
     "callbag-from-promise": "^1.0.0",
     "callbag-map": "^1.0.1",
@@ -29,6 +28,23 @@
     "@babel/core": "^7.0.0-beta.42",
     "@babel/node": "^7.0.0-beta.42",
     "@babel/plugin-proposal-pipeline-operator": "^7.0.0-beta.42",
-    "@babel/preset-env": "^7.0.0-beta.42"
+    "@babel/preset-env": "^7.0.0-beta.42",
+    "@babel/register": "^7.0.0-beta.42",
+    "ava": "^1.0.0-beta.3",
+    "callbag-basics": "^3.0.0",
+    "esm": "^3.0.14"
+  },
+  "ava": {
+    "require": [
+      "@babel/register",
+      "esm"
+		],
+    "babel": {
+      "testOptions": {
+        "plugins": [
+          "@babel/plugin-proposal-pipeline-operator"
+        ]
+      }
+    }
   }
 }
