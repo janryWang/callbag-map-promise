@@ -4,7 +4,7 @@
   "description": "callbag map+fromPromise+flatten",
   "main": "./lib",
   "scripts": {
-    "test": "ava",
+    "test": "npm run build && ava",
     "build": "babel index.js --out-dir lib  --presets @babel/preset-env --plugins @babel/plugin-proposal-pipeline-operator"
   },
   "repository": {

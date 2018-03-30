@@ -36,4 +36,11 @@ test.cb("normal", t => {
             t.deepEqual(friends, ["aaa"])
             t.end()
         })
+
+    fromPromise(fetchUser("judicy"))
+        |> mapPromise(user => 123)
+        |> forEach(friends => {
+            t.deepEqual(friends, 123)
+            t.end()
+        })
 })
