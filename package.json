@@ -1,6 +1,6 @@
 {
   "name": "callbag-map-promise",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "callbag map+fromPromise+flatten",
   "main": "./lib",
   "scripts": {
