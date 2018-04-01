@@ -1,6 +1,6 @@
 {
   "name": "callbag-map-promise",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "callbag map+fromPromise+flatten",
   "main": "./lib",
   "scripts": {
@@ -18,9 +18,8 @@
   },
   "homepage": "https://github.com/janryWang/callbag-map-promise#readme",
   "dependencies": {
-    "callbag-flatten": "^1.1.0",
+    "callbag-flat-map": "^1.0.0",
     "callbag-from-promise": "^1.0.0",
-    "callbag-map": "^1.0.1",
     "callbag-pipe": "^1.1.1"
   },
   "devDependencies": {
@@ -38,7 +37,7 @@
     "require": [
       "@babel/register",
       "esm"
-		],
+    ],
     "babel": {
       "testOptions": {
         "plugins": [
