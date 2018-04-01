@@ -11,5 +11,5 @@ export default (fn,endpoint)=>source=>{
     return flatMap(d=>{
         d = fn(d)
       return d instanceof Promise ? fromPromise(d) : transfer(d)
-    })(source)
+    },endpoint)(source)
 }
