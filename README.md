@@ -1,5 +1,7 @@
 # callbag-map-promise
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/janryWang/callbag-map-promise.svg)](https://greenkeeper.io/)
+
 > map + fromPromise + flatten
 
 
